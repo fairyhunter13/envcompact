@@ -11,9 +11,10 @@ import (
 )
 
 type Option struct {
-	Verbose bool
-	Silent  bool
-	Input   string
+	Verbose      bool
+	Silent       bool
+	PrintVersion bool
+	Input        string
 }
 
 func (o *Option) Assign(opts []FuncOption) *Option {
