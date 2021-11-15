@@ -1,0 +1,4 @@
+github.com/fairyhunter13/go-lexer v1.0.0-1 h1:D1hBwfy0L+fUcdqPG3crpddeY32BDWrDvncjcoqHJjo=
+github.com/fairyhunter13/go-lexer v1.0.0-1/go.mod h1:CSiw6pWfRvEJqmVat2qgOsj2TTB0XDCinoaUyyn1SdI=
+github.com/fairyhunter13/pool v0.0.0-20211114080908-60a828fe746c h1:+8wTxSaAJZ74C1NUYIUNoXiwB52SVs0c538bVruH41Y=
+github.com/fairyhunter13/pool v0.0.0-20211114080908-60a828fe746c/go.mod h1:RamDxwNsACUYVPVLx1yy9b7AYUoRpnsPkbJZKZqoAYs=
