@@ -78,15 +78,21 @@ func (app *Instance) Run() (err error) {
 		compactEngine = compacter.NewParser(app.fileSource)
 		line          string
 		lineNum       = uint64(1)
+		first         = true
 	)
 	for compactEngine.Scan() {
+		if first {
+			first = false
+		} else {
+			fmt.Println()
+		}
 		line = compactEngine.Text()
 		customlog.Get().Debug(
 			"Reading from the file source.",
 			zap.String("line", line),
 			zap.Uint64("lineNum", lineNum),
 		)
-		fmt.Println(line)
+		fmt.Print(line)
 		lineNum++
 	}
 	return
