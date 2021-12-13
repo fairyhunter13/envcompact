@@ -13,7 +13,7 @@ import (
 
 const (
 	name    = `envcompact`
-	version = `v0.2.1`
+	version = `v1.0.0`
 )
 
 var (

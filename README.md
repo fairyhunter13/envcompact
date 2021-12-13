@@ -18,3 +18,27 @@
 
 # Envcompact
 Envcompact is a tool to compact env from multiple line to single line.
+
+# Installation
+
+To use this tool, we can install it with this command below:
+
+```bash
+$ go install github.com/fairyhunter13/envcompact@latest
+```
+
+## Help Message
+
+To show the help message of this tool, use this command below:
+
+```bash
+$ envcompact -h
+```
+
+## How to Use
+
+The example of using this tool is written below:
+
+```bash
+$ envcompact -v -i tests/input.env > tests/output.env
+```
