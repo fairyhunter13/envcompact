@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/fairyhunter13/envcompact/internal/app"
@@ -13,7 +14,7 @@ import (
 
 const (
 	name    = `envcompact`
-	version = `v1.0.0`
+	version = `v1.0.1`
 )
 
 var (
@@ -78,15 +79,15 @@ func init() {
 	rootCmd.Flags().BoolVarP(&option.PrintVersion, "version", "V", false, "print version then exit")
 
 	// All child flags
-	rootCmd.PersistentFlags().BoolVarP(&option.Verbose, "verbose", "v", false, "verbosity of logging")
+	rootCmd.PersistentFlags().BoolVarP(&option.Verbose, "verbose", "v", false, "verbosity of logging (overrides the silent flag)")
 	rootCmd.PersistentFlags().BoolVarP(&option.Silent, "silent", "s", false, "disable logging based on this value")
 }
 
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
-		customlog.Get().Fatal(
-			"Error in executing the root command.",
-			zap.Error(err),
-		)
+		if option.Silent && !option.Verbose {
+			return
+		}
+		log.Printf("Error in executing the root command: %+v", err)
 	}
 }
