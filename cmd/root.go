@@ -14,7 +14,7 @@ import (
 
 const (
 	name    = `envcompact`
-	version = `v1.0.1`
+	version = `v1.1.1`
 )
 
 var (
@@ -61,7 +61,6 @@ and closes the multi-line value with the respective quote.`,
 				)
 				return
 			}
-			defer application.Close()
 
 			if err := application.Run(); err != nil {
 				customlog.Get().Fatal(

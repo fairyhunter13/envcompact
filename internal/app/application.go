@@ -67,13 +67,15 @@ func (app *Instance) Init() (err error) {
 	return
 }
 
-func (app *Instance) Close() {
+func (app *Instance) close() {
 	if app.fileSource != nil {
 		app.fileSource.Close()
 	}
 }
 
 func (app *Instance) Run() (err error) {
+	defer app.close()
+
 	var (
 		compactEngine = compacter.NewParser(app.fileSource)
 		line          string
