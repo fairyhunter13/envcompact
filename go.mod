@@ -8,4 +8,10 @@ require (
 	go.uber.org/zap v1.17.0
 )
 
+retract (
+	v1.1.0
+	v1.0.3
+	v1.0.2
+)
+
 go 1.16
