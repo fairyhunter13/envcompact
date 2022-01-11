@@ -16,8 +16,7 @@ type Parser struct {
 	Scanner *bufio.Scanner
 
 	// state of the parser
-	AfterEqual bool
-	Quote      rune
+	Quote rune
 }
 
 func NewParser(rd io.Reader) *Parser {
@@ -31,15 +30,33 @@ func (p *Parser) Err() error { return p.Scanner.Err() }
 func (p *Parser) GetLine(l *lexer.L) (fn lexer.StateFunc) {
 	char := l.Peek()
 	for char != lexer.EOFRune {
-		if !p.AfterEqual && char == '=' {
-			p.AfterEqual = true
-		}
-
-		if p.AfterEqual && (char == '\'' || char == '"') {
-			fn = p.AllQuote
+		if char == '=' {
+			fn = p.EqualCheck
 			break
 		}
 
+		char = l.NextPeek()
+	}
+
+	l.Emit(AllToken)
+	return
+}
+
+func (p *Parser) EqualCheck(l *lexer.L) (fn lexer.StateFunc) {
+	char := l.NextPeek()
+	if char == '\'' || char == '"' {
+		fn = p.AllQuote
+	} else {
+		fn = p.Usual
+	}
+
+	l.Emit(AllToken)
+	return
+}
+
+func (p *Parser) Usual(l *lexer.L) (fn lexer.StateFunc) {
+	char := l.Next()
+	for char != lexer.EOFRune {
 		char = l.NextPeek()
 	}
 
